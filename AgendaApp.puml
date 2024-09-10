@@ -1,0 +1,31 @@
+@startuml
+class Agenda {
+    -proprietario: String
+    +Agenda()
+    +setProprietario(): void
+    +getProprietario(): void
+    +adicionaContato(): void
+    +alteraContato(): void
+    +excluiContato(): void
+    +listarContatos(): ArrayList
+    +filtrarContatos(): ArrayList
+}
+
+class Contato {
+    -nome: String
+    -telefone: String
+    -email: String
+    -endereco: String
+    -cidade: String
+    -uf: String
+    -cep: String
+    -dataNascimento: LocalDate
+    +isEmailValid(): boolean
+    +toString(): String
+
+
+}
+
+Agenda "1" --* "1..n" Contato : contém
+
+@enduml
