@@ -2,6 +2,9 @@ package br.eti.kge.agendaapp;
 
 import br.eti.kge.agendaapp.menu.MenuOption;
 import br.eti.kge.agendaapp.menu.MenuManager;
+import br.eti.kge.agendaapp.model.Agenda;
+import br.eti.kge.agendaapp.model.Contato;
+import java.util.Scanner;
 
 /**
  * Aplicação inicial objeto de estudo do componente Programação Orientada a Objetos
@@ -11,8 +14,11 @@ import br.eti.kge.agendaapp.menu.MenuManager;
 public class AgendaApp {
 
     public static MenuManager menuPrincipal;
+    public static Agenda minhaAgenda;
 
     public static void main(String[] args) {
+        
+        minhaAgenda = new Agenda("KGe");
         
         char opcao;
         boolean continua = true;
@@ -61,10 +67,36 @@ public class AgendaApp {
     }
 
     public static void adicionaContato() {
-        // TODO Implementar adicionar contato telefonico aqui.
-        System.out.println("Não implementado!");
+        Scanner teclado = new Scanner(System.in);
+        Contato contatoAux = new Contato();
+
+        System.out.print("Informe nome: ");
+        contatoAux.setNome(teclado.nextLine());
+
+        System.out.print("Informe telefone: ");
+        contatoAux.setTelefone(teclado.nextLine());
+
+        System.out.print("Informe email: ");
+        contatoAux.setEmail(teclado.nextLine());
+
+        System.out.print("Informe endereco: ");
+        contatoAux.setEndereco(teclado.nextLine());
+
+        System.out.print("Informe cidade: ");
+        contatoAux.setCidade(teclado.nextLine());
+
+        System.out.print("Informe uf: ");
+        contatoAux.setUf(teclado.nextLine());
+
+        System.out.print("Informe cep: ");
+        contatoAux.setCep(teclado.nextLine());
+
+        //System.out.print("Informe dataNascimento: ");
+        //contatoAux.setDataNascimento(teclado.nextLine());
+        
+        minhaAgenda.adicionaContato(contatoAux);
+        
     }
     
-    // TODO Implementar os outros métodos para alterar, remover e listar contatos.
-
+    
 }

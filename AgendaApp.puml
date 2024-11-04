@@ -1,14 +1,14 @@
 @startuml
 class Agenda {
     -proprietario: String
-    +Agenda()
-    +setProprietario(): void
+    +Agenda(proprietario: String)
+    +setProprietario(proprietario: String): void
     +getProprietario(): void
-    +adicionaContato(): void
-    +alteraContato(): void
-    +excluiContato(): void
-    +listarContatos(): ArrayList
-    +filtrarContatos(): ArrayList
+    +adicionaContato(c: Contato): void
+    +alteraContato(index: int, c: Contato): void
+    +excluiContato(index: int): void
+    +listarContatos(): String
+    +filtrarContatos(): String
 }
 
 class Contato {
@@ -26,6 +26,6 @@ class Contato {
 
 }
 
-Agenda "1" --* "1..n" Contato : contém
+Agenda "1" --> "1..n" Contato : contém
 
 @enduml

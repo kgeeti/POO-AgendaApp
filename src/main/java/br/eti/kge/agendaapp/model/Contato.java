@@ -1,6 +1,8 @@
 package br.eti.kge.agendaapp.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Classe que representa os dados do Contato
@@ -32,12 +34,30 @@ public class Contato {
         this.dataNascimento = dataNascimento;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public String getDataNascimento() {
+        
+        DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.dataNascimento.format( dtFormat );
+        
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setDataNascimento(String strDataNascimento) {
+        DateTimeFormatter dtFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        try {
+            
+            this.dataNascimento = LocalDate.parse(strDataNascimento, dtFormat);
+            
+        } catch (DateTimeParseException ex) {
+            
+            System.out.println("Erro ao aplicar data!");
+            System.out.println("Verifique se a data segue o padrão dd/mm/aaaa");
+            System.out.println("e tente novamente. ");
+            
+            this.dataNascimento = null;
+            
+        }
+        
     }
 
     public String getNome() {
@@ -117,10 +137,17 @@ public class Contato {
 
         // Verifica se a parte do domínio contém pelo menos um ponto
         int dotIndex = dominio.indexOf('.');
-        if (dotIndex <= 0 || dotIndex >= dominio.length() - 1) {
+        if (dotIndex <= 0 || dotIndex >= dominio.length() - 1 || login.isEmpty()) {
             return false;
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Contato{" + "nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", endereco=" + endereco + ", cidade=" + cidade + ", uf=" + uf + ", cep=" + cep + ", dataNascimento=" + dataNascimento + '}';
+    }
+    
+    
 
 }
